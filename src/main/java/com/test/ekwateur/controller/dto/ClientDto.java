@@ -18,7 +18,7 @@ public class ClientDto {
 
 	private String siretNumber;
 	private String socialReason;
-	private Long salesRevenue;
+	private Double salesRevenue;
 	
 	public ClientDto() {
 		
@@ -37,7 +37,7 @@ public class ClientDto {
 	}
 	
 	public ClientDto(String reference, ClientType clientType,
-			String siretNumber, String socialReason, Long salesRevenue) {
+			String siretNumber, String socialReason, Double salesRevenue) {
 		this.reference = reference;
 		this.clientType = clientType;
 		this.civility = null;
@@ -50,7 +50,7 @@ public class ClientDto {
 
 	public ClientDto(String reference, ClientType clientType,
 			Civility civility, String lastName, String firstName,
-			String siretNumber, String socialReason, Long salesRevenue) {
+			String siretNumber, String socialReason, Double salesRevenue) {
 		this.reference = reference;
 		this.clientType = clientType;
 		this.civility = civility;
@@ -89,7 +89,28 @@ public class ClientDto {
 		return socialReason;
 	}
 
-	public Long getSalesRevenue() {
+	public Double getSalesRevenue() {
 		return salesRevenue;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		
+		if (o == null || getClass() != o.getClass()) 
+			return false;
+		
+		ClientDto clientDto = (ClientDto)o;
+		
+		return reference.equals(clientDto.reference)
+				&& clientType.equals(clientDto.clientType)
+				&& (civility == clientDto.civility || civility.equals(clientDto.civility))
+				&& (lastName == clientDto.lastName || lastName.equals(clientDto.lastName))
+				&& (firstName == clientDto.firstName || firstName.equals(clientDto.firstName))
+				&& (civility == clientDto.civility || siretNumber.equals(clientDto.siretNumber))
+				&& (socialReason == clientDto.socialReason || socialReason.equals(clientDto.socialReason))
+				&& (civility == clientDto.civility || salesRevenue.equals(clientDto.salesRevenue));
+
 	}
 }

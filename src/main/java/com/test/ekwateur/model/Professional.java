@@ -4,16 +4,16 @@ public class Professional extends Client{
 
 	private final String siretNumber;
 	private final String socialReason;
-	private final Long salesRevenue;
+	private final Double salesRevenue;
 	
-	public Professional(String reference, String siretNumber, String socialReason, Long salesRevenue) {
+	public Professional(String reference, String siretNumber, String socialReason, Double salesRevenue) {
 		super(reference);
 		this.siretNumber = siretNumber;
 		this.socialReason = socialReason;
 		this.salesRevenue = salesRevenue;
 	}
 
-	public Long getSalesRevenue() {
+	public Double getSalesRevenue() {
 		return salesRevenue;
 	}
 
