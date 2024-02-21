@@ -43,7 +43,9 @@ Le minimum attendu est un programme fonctionnel qui puisse etre executé et test
 - Enfin, nous communiquer par mail le lien de ton repository quand l'exercice est terminé
 
 ## Test
-Pour tester l'application, il faut envoyé une requête POST à l'url `localhost:8080/facturations` avec le body suivant en remplaçant les champs : 
+Pour tester l'application, il faut : 
+- lancer la commande `mvn spring-boot:run`
+- envoyer une requête POST à l'url `localhost:8080/facturations` avec le body suivant en remplaçant les champs : 
 ```{
     "gasConsumptionInKwh": {long},
     "electricityConsumptionInKwh": {long},
