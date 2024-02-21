@@ -7,6 +7,7 @@ import com.test.ekwateur.model.Consumption;
 import com.test.ekwateur.model.ParticularCalculatorProperties;
 import com.test.ekwateur.model.Professional;
 import com.test.ekwateur.model.ProfessionalCalculatorProperties;
+import com.test.ekwateur.model.exception.NoPriceFoundException;
 
 @Service
 public class BillingService {
@@ -47,9 +48,11 @@ public class BillingService {
 		if (professional.getSalesRevenue() < professionalCalculatorProperties.getSalesStage()) {
 			gasConsumptionInEuro = consumption.gasConsumptionInKwh()*professionalCalculatorProperties.getBelowStageGasPrice();
 			electricityConsumptionInEuro = consumption.gasConsumptionInKwh()*professionalCalculatorProperties.getBelowStageElectricityPrice();
-		} else {
+		} else if (professional.getSalesRevenue() > professionalCalculatorProperties.getSalesStage()){
 			gasConsumptionInEuro = consumption.gasConsumptionInKwh()*professionalCalculatorProperties.getAboveStageGasPrice();
 			electricityConsumptionInEuro = consumption.gasConsumptionInKwh()*professionalCalculatorProperties.getAboveStageElectricityPrice();
+		} else {
+			throw new NoPriceFoundException();
 		}
 		totalConsumptionInEuro = gasConsumptionInEuro + electricityConsumptionInEuro;
 		return new Bill(consumption.client(),gasConsumptionInEuro, electricityConsumptionInEuro, totalConsumptionInEuro);
