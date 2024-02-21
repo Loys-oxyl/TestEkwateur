@@ -41,3 +41,20 @@ Le minimum attendu est un programme fonctionnel qui puisse etre executé et test
 - Créer un nouveau repository public sur un espace à toi (et non un fork de ce repo sur l'espace gitlab Ekwateur)
 - Rendre le projet sur la branche master de ton repository
 - Enfin, nous communiquer par mail le lien de ton repository quand l'exercice est terminé
+
+## Test
+Pour tester l'application, il faut envoyé une requête POST à l'url `localhost:8080/facturations` avec le body suivant en remplaçant les champs : 
+```{
+    "gasConsumptionInKwh": {long},
+    "electricityConsumptionInKwh": {long},
+    "client": {
+        "reference": {String}",
+        "clientType": {PARTICULAR/PROFESSIONAL},
+        "civility": {M/Mme},
+        "lastName": {String},
+        "firstName": {String},
+        "siretNumber": {String},
+        "socialReason": {String},
+        "salesRevenue": {Double}
+    }
+}
